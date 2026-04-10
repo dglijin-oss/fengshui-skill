@@ -260,3 +260,35 @@ function getFeiXingJiXiong(feiXing) {
   if (xiongXing.includes(feiXing)) return '凶';
   return '平';
 }
+
+// ============== v2.1.0 增强风水评分系统 ==============
+
+const FENGSHUI_SCORE_DETAILS = {
+    '宅命相配': { '吉': 30, '凶': 0 },
+    '大门方位': { '大吉': 25, '吉': 20, '小吉': 15, '凶': 5 },
+    '卧室方位': { '大吉': 20, '吉': 15, '小吉': 10, '凶': 0 },
+    '厨房方位': { '吉': 15, '平': 10, '凶': 0 },
+    '卫生间': { '压凶': 10, '平': 5, '压吉': 0 },
+};
+
+function calculateDetailedScore(result) {
+    let score = 0;
+    let details = {};
+    
+    // 宅命相配
+    if (result.宅命相配 === '吉') {
+        score += 30;
+        details.宅命相配 = '吉 +30 分';
+    } else {
+        details.宅命相配 = '凶 +0 分';
+    }
+    
+    // 其他评分项（简化）
+    score += 45; // 基础分
+    details.其他 = '基础分 +45';
+    
+    result.风水评分详情 = details;
+    result.风水评分 = Math.min(score, 100);
+    
+    return result;
+}
