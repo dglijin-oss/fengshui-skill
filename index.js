@@ -292,3 +292,40 @@ function calculateDetailedScore(result) {
     
     return result;
 }
+
+// ============== v2.2.0 趋吉避凶建议 ==============
+
+function getFengshuiAdvice(result) {
+    const advice = {
+        '吉利方位': [],
+        '吉利颜色': [],
+        '布局调整': [],
+        '化解建议': [],
+    };
+    
+    // 根据游年九星
+    const jiXiong = result.游年九星 || {};
+    
+    if (jiXiong.生气) {
+        advice.吉利方位.push(`生气方：${jiXiong.生气.方位} - 宜大门、卧室`);
+    }
+    if (jiXiong.天医) {
+        advice.吉利方位.push(`天医方：${jiXiong.天医.方位} - 宜卧室、书房`);
+    }
+    
+    // 化解建议
+    if (jiXiong.五鬼) {
+        advice.化解建议.push(`五鬼方 (${jiXiong.五鬼.方位})：放置葫芦或五帝钱`);
+    }
+    if (jiXiong.绝命) {
+        advice.化解建议.push(`绝命方 (${jiXiong.绝命.方位})：放置泰山石敢当`);
+    }
+    
+    // 布局调整
+    advice.布局调整.push('大门宜开在生气、延年、天医方');
+    advice.布局调整.push('卧室宜设在吉方，避开凶方');
+    advice.布局调整.push('厨房宜设在东方或南方');
+    advice.布局调整.push('卫生间宜压在凶方');
+    
+    return advice;
+}
