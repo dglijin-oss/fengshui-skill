@@ -1,9 +1,9 @@
 /**
  * 风水堪舆 Skill - 核心算法
- * 作者：天工长老
- * 版本：v1.1
- * 创建：2026 年 3 月 29 日
- * 更新：2026 年 3 月 30 日 - 添加玄空飞星基础、二十四山详解
+ * 作者:天工长老
+ * 版本:v1.1
+ * 创建:2026 年 3 月 29 日
+ * 更新:2026 年 3 月 30 日 - 添加玄空飞星基础、二十四山详解
  */
 
 // 命卦计算
@@ -38,7 +38,7 @@ function getMingType(mingGua) {
   return '未知';
 }
 
-// 宅型判断（根据坐向）
+// 宅型判断(根据坐向)
 function getZhaiType(direction) {
   const directionMap = {
     '北': '坎宅', '南': '离宅', '东': '震宅', '西': '兑宅',
@@ -47,40 +47,40 @@ function getZhaiType(direction) {
   return directionMap[direction] || '未知';
 }
 
-// 游年九星排布（简化版）
+// 游年九星排布(简化版)
 function getJiuXing(mingGua) {
   const jiuXingMap = {
     '坎': {
-      生气：'东南', 天医：'东', 延年：'南', 伏位：'北',
-      祸害：'西', 六煞：'西北', 五鬼：'东北', 绝命：'西南'
+      生气:'东南', 天医:'东', 延年:'南', 伏位:'北',
+      祸害:'西', 六煞:'西北', 五鬼:'东北', 绝命:'西南'
     },
     '离': {
-      生气：'东', 天医：'东南', 延年：'北', 伏位：'南',
-      祸害：'西南', 六煞：'东', 五鬼：'西', 绝命：'西北'
+      生气:'东', 天医:'东南', 延年:'北', 伏位:'南',
+      祸害:'西南', 六煞:'东', 五鬼:'西', 绝命:'西北'
     },
     '震': {
-      生气：'南', 天医：'北', 延年：'东南', 伏位：'东',
-      祸害：'西南', 六煞：'东北', 五鬼：'西北', 绝命：'西'
+      生气:'南', 天医:'北', 延年:'东南', 伏位:'东',
+      祸害:'西南', 六煞:'东北', 五鬼:'西北', 绝命:'西'
     },
     '巽': {
-      生气：'北', 天医：'南', 延年：'东', 伏位：'东南',
-      祸害：'东', 六煞：'西', 五鬼：'西南', 绝命：'东北'
+      生气:'北', 天医:'南', 延年:'东', 伏位:'东南',
+      祸害:'东', 六煞:'西', 五鬼:'西南', 绝命:'东北'
     },
     '乾': {
-      生气：'西', 天医：'东北', 延年：'西南', 伏位：'西北',
-      祸害：'东南', 六煞：'北', 五鬼：'东', 绝命：'南'
+      生气:'西', 天医:'东北', 延年:'西南', 伏位:'西北',
+      祸害:'东南', 六煞:'北', 五鬼:'东', 绝命:'南'
     },
     '坤': {
-      生气：'东北', 天医：'西', 延年：'西北', 伏位：'西南',
-      祸害：'北', 六煞：'南', 五鬼：'东南', 绝命：'北'
+      生气:'东北', 天医:'西', 延年:'西北', 伏位:'西南',
+      祸害:'北', 六煞:'南', 五鬼:'东南', 绝命:'北'
     },
     '艮': {
-      生气：'西南', 天医：'西北', 延年：'西', 伏位：'东北',
-      祸害：'南', 六煞：'东', 五鬼：'北', 绝命：'东南'
+      生气:'西南', 天医:'西北', 延年:'西', 伏位:'东北',
+      祸害:'南', 六煞:'东', 五鬼:'北', 绝命:'东南'
     },
     '兑': {
-      生气：'西北', 天医：'西南', 延年：'东北', 伏位：'西',
-      祸害：'北', 六煞：'东南', 五鬼：'南', 绝命：'东'
+      生气:'西北', 天医:'西南', 延年:'东北', 伏位:'西',
+      祸害:'北', 六煞:'东南', 五鬼:'南', 绝命:'东'
     }
   };
   
@@ -106,9 +106,9 @@ function matchZhaiMing(mingGua, zhaiType) {
   const isDongSiMing = dongSiMing.includes(mingGua);
   const isDongSiZhai = dongSiZhai.includes(zhaiType);
   
-  if (isDongSiMing && isDongSiZhai) return { match: true, msg: '吉（东四命住东四宅）' };
-  if (!isDongSiMing && !isDongSiZhai) return { match: true, msg: '吉（西四命住西四宅）' };
-  return { match: false, msg: '凶（宅命不配）' };
+  if (isDongSiMing && isDongSiZhai) return { match: true, msg: '吉(东四命住东四宅)' };
+  if (!isDongSiMing && !isDongSiZhai) return { match: true, msg: '吉(西四命住西四宅)' };
+  return { match: false, msg: '凶(宅命不配)' };
 }
 
 // 布局建议
@@ -119,21 +119,21 @@ function getBuJuJianYi(jiuXing) {
   for (const [star, fangwei] of Object.entries(jiuXing)) {
     const jiXiong = getJiuXingJiXiong(star);
     if (jiXiong.includes('吉')) {
-      jiFang.push({ 方位：fangwei, 星：star, 吉凶：jiXiong });
+      jiFang.push({ 方位:fangwei, 星:star, 吉凶:jiXiong });
     } else {
-      xiongFang.push({ 方位：fangwei, 星：star, 吉凶：jiXiong });
+      xiongFang.push({ 方位:fangwei, 星:star, 吉凶:jiXiong });
     }
   }
   
   return {
-    吉方：jiFang,
-    凶方：xiongFang,
-    建议：{
-      卧室：'宜在生气、天医、延年方',
-      大门：'宜开在生气、延年方',
-      厨房：'宜压在凶方，灶口向吉方',
-      卫生间：'不宜在吉方',
-      客厅：'宜在生气、伏位方'
+    吉方:jiFang,
+    凶方:xiongFang,
+    建议:{
+      卧室:'宜在生气、天医、延年方',
+      大门:'宜开在生气、延年方',
+      厨房:'宜压在凶方,灶口向吉方',
+      卫生间:'不宜在吉方',
+      客厅:'宜在生气、伏位方'
     }
   };
 }
@@ -159,21 +159,21 @@ function fengShui(year, gender, direction) {
   else conclusion = '凶';
   
   return {
-    命主信息：{
-      出生年份：year,
-      性别：gender === 'male' ? '男' : '女',
-      命卦：mingGua,
-      命型：mingType
+    命主信息:{
+      出生年份:year,
+      性别:gender === 'male' ? '男' : '女',
+      命卦:mingGua,
+      命型:mingType
     },
-    宅型信息：{
-      坐向：direction,
-      宅型：zhaiType
+    宅型信息:{
+      坐向:direction,
+      宅型:zhaiType
     },
-    宅命匹配：match,
-    游年九星：jiuXing,
-    布局建议：buJu,
-    综合评分：score,
-    综合判断：conclusion
+    宅命匹配:match,
+    游年九星:jiuXing,
+    布局建议:buJu,
+    综合评分:score,
+    综合判断:conclusion
   };
 }
 
@@ -191,27 +191,27 @@ module.exports = {
   getXuanKongFeiXing
 };
 
-// ========== v1.1 新增：二十四山详解 ==========
+// ========== v1.1 新增:二十四山详解 ==========
 
 // 二十四山
 const ER_SHI_SI_SHAN = {
-  北：['壬', '子', '癸'],
-  东北：['丑', '艮', '寅'],
-  东：['甲', '卯', '乙'],
-  东南：['辰', '巽', '巳'],
-  南：['丙', '午', '丁'],
-  西南：['未', '坤', '申'],
-  西：['庚', '酉', '辛'],
-  西北：['戌', '乾', '亥']
+  北:['壬', '子', '癸'],
+  东北:['丑', '艮', '寅'],
+  东:['甲', '卯', '乙'],
+  东南:['辰', '巽', '巳'],
+  南:['丙', '午', '丁'],
+  西南:['未', '坤', '申'],
+  西:['庚', '酉', '辛'],
+  西北:['戌', '乾', '亥']
 };
 
 // 获取二十四山详情
 function getErShiSiShan(fangWei) {
   if (ER_SHI_SI_SHAN[fangWei]) {
     return {
-      方位：fangWei,
-      三山：ER_SHI_SI_SHAN[fangWei],
-      五行：getShanWuXing(fangWei)
+      方位:fangWei,
+      三山:ER_SHI_SI_SHAN[fangWei],
+      五行:getShanWuXing(fangWei)
     };
   }
   return null;
@@ -220,13 +220,13 @@ function getErShiSiShan(fangWei) {
 // 山的五行
 function getShanWuXing(fangWei) {
   const wuXingMap = {
-    北：'水', 东北：'土', 东：'木', 东南：'木',
-    南：'火', 西南：'土', 西：'金', 西北：'金'
+    北:'水', 东北:'土', 东:'木', 东南:'木',
+    南:'火', 西南:'土', 西:'金', 西北:'金'
   };
   return wuXingMap[fangWei] || '未知';
 }
 
-// 玄空飞星基础（简化版）
+// 玄空飞星基础(简化版)
 function getXuanKongFeiXing(year, fangWei) {
   // 九宫飞星顺序
   const feiXing = [
@@ -234,7 +234,7 @@ function getXuanKongFeiXing(year, fangWei) {
     '五黄廉贞', '六白武曲', '七赤破军', '八白左辅', '九紫右弼'
   ];
   
-  // 年飞星（简化计算）
+  // 年飞星(简化计算)
   const yearStarIndex = (year - 1900) % 9;
   const yearStar = feiXing[yearStarIndex];
   
@@ -243,11 +243,11 @@ function getXuanKongFeiXing(year, fangWei) {
   const fangWeiStar = feiXing[(yearStarIndex + fangWeiIndex) % 9];
   
   return {
-    年份：year,
-    年飞星：yearStar,
-    方位：fangWei,
-    方位飞星：fangWeiStar,
-    吉凶：getFeiXingJiXiong(fangWeiStar)
+    年份:year,
+    年飞星:yearStar,
+    方位:fangWei,
+    方位飞星:fangWeiStar,
+    吉凶:getFeiXingJiXiong(fangWeiStar)
   };
 }
 
@@ -283,7 +283,7 @@ function calculateDetailedScore(result) {
         details.宅命相配 = '凶 +0 分';
     }
     
-    // 其他评分项（简化）
+    // 其他评分项(简化)
     score += 45; // 基础分
     details.其他 = '基础分 +45';
     
@@ -307,23 +307,23 @@ function getFengshuiAdvice(result) {
     const jiXiong = result.游年九星 || {};
     
     if (jiXiong.生气) {
-        advice.吉利方位.push(`生气方：${jiXiong.生气.方位} - 宜大门、卧室`);
+        advice.吉利方位.push(`生气方:${jiXiong.生气.方位} - 宜大门、卧室`);
     }
     if (jiXiong.天医) {
-        advice.吉利方位.push(`天医方：${jiXiong.天医.方位} - 宜卧室、书房`);
+        advice.吉利方位.push(`天医方:${jiXiong.天医.方位} - 宜卧室、书房`);
     }
     
     // 化解建议
     if (jiXiong.五鬼) {
-        advice.化解建议.push(`五鬼方 (${jiXiong.五鬼.方位})：放置葫芦或五帝钱`);
+        advice.化解建议.push(`五鬼方 (${jiXiong.五鬼.方位}):放置葫芦或五帝钱`);
     }
     if (jiXiong.绝命) {
-        advice.化解建议.push(`绝命方 (${jiXiong.绝命.方位})：放置泰山石敢当`);
+        advice.化解建议.push(`绝命方 (${jiXiong.绝命.方位}):放置泰山石敢当`);
     }
     
     // 布局调整
     advice.布局调整.push('大门宜开在生气、延年、天医方');
-    advice.布局调整.push('卧室宜设在吉方，避开凶方');
+    advice.布局调整.push('卧室宜设在吉方,避开凶方');
     advice.布局调整.push('厨房宜设在东方或南方');
     advice.布局调整.push('卫生间宜压在凶方');
     
